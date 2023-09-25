@@ -3,11 +3,9 @@ import  { useState } from 'react';
 
 type propsType = {
     calldata : (x : todosType) => void,
-    editZone : boolean,
-    editData : todosType 
 }
 
-const AddTask = ({calldata, editZone, editData} : propsType ) => {
+const AddTask = ({calldata} : propsType ) => {
 
  const [todoData, setTodoData] = useState<todosType>({task : '', id : Date.now(), isChecked : false});
 
@@ -15,14 +13,7 @@ const AddTask = ({calldata, editZone, editData} : propsType ) => {
     setTodoData({ ...todoData, [e.target.name]: e.target.value });
  };
  
- const editHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const newArray = {id : Date.now() , isChecked : false, task : e.target.value}
 
-  setTodoData(newArray)
-  // console.log(newArray);
-  
-
- } 
 
  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,19 +28,9 @@ const AddTask = ({calldata, editZone, editData} : propsType ) => {
 
 
     <form onSubmit={handleSubmit} className="m-2">
-      {
-        editZone ? (
-          <input 
-          className="border p-2 m-2 outline-none border-gray-500"
-
-          name ='task'
-          onChange={editHandler}
-          placeholder={editData ?  editData.task : ''} 
-          value={todoData.task}
-          type="text" /> 
-        ) : 
+    
       
-        (<input
+        <input
           className="border p-2 m-2 outline-none border-gray-500"
           id="email"
           type="text"
@@ -57,8 +38,8 @@ const AddTask = ({calldata, editZone, editData} : propsType ) => {
           value={todoData.task}
           onChange={handleChange}
           placeholder="Add Todos"
-        />)
-}
+        />
+
       <button
       disabled={todoData.task === ''}
       type='submit'

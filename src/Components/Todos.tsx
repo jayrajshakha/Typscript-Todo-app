@@ -4,12 +4,11 @@ type propsType = {
     data : todosType[],
     delCall : (x : number) => void
     checkCall : (x : todosType) => void
-    editCall : (x : todosType) => void
 
 
 }
 
-const Todos = ({data, delCall, checkCall, editCall} : propsType) => {
+const Todos = ({data, delCall, checkCall} : propsType) => {
  return (
     <div>
 
@@ -37,7 +36,6 @@ const Todos = ({data, delCall, checkCall, editCall} : propsType) => {
                </div>
               <div className="sm:flex justify-center items-center m-2 p-2">
               <button 
-                  onClick={() => editCall(i)}
                   className= "m-2 bg-blue-500 sm:w-[90px]  hover:bg-blue-700 text-white font-bold py-2 px-4 ">
                     Edit
                   </button>
